@@ -2,12 +2,13 @@
 #include <WiFiClient.h>
 #include<ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
-#include "index.h"
+#include "index.h" //Imports HTML file from Index.h
 
-const char* ssid="xxxxx";
-const char* password ="xxxx";
+const char* ssid="xxxxx"; //Enter your Wifi Name
+const char* password ="xxxx"; //Enter your Wifi Password
 //char b,char1,char2;
-ESP8266WebServer server(80);
+
+ESP8266WebServer server(80); //Creates Instance of Web Server
 
 //String page = "";
 int LEDPin = 13;
@@ -140,7 +141,7 @@ for (int i=1; i <=8; i++){
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 
-  MDNS.begin("Esp8266");
+  MDNS.begin("Esp8266");  //Access using Esp8266.local on web Browser
    
   server.on("/", [](){
     server.send(200, "text/html", page);
