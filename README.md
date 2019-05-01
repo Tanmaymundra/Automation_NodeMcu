@@ -17,3 +17,8 @@ Will further add javascript such that the colour of the Individual relays change
 
 
 *Make Sure to Keep Both Files in the Same folder while uploading*
+
+
+
+References :- 
+https://circuits4you.com/2016/12/16/esp8266-web-server-html/
