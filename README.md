@@ -14,3 +14,6 @@ D0:D7 are the output Pins of the NODE MCU.
 MDNS gives the ability to access the web server directly as esp8266.local
 
 Will further add javascript such that the colour of the Individual relays change based on whether it is on or off
+
+
+*Make Sure to Keep Both Files in the Same folder while uploading*
