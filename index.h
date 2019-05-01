@@ -47,7 +47,7 @@ const char page[] PROGMEM = R"=====(
 
 <p><strong>Relay 8 -&nbsp;</strong> <a href="R8ON"><button>ON</button></a> <a href="R8OFF"><button>OFF</button></a></p>
 
-<p class="b_text"><strong>All Relays-&nbsp;</strong> <a href="RON"><button>ON</button></a> <a href="ROFF"><button>OFF</button></a></p>"
+<p class="b_text"><strong>All Relays-&nbsp;</strong> <a href="RON"><button>ON</button></a> <a href="ROFF"><button>OFF</button></a></p>
 
 </html>
 
