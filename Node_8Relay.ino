@@ -1,0 +1,155 @@
+#include <ESP8266WiFi.h>
+#include <WiFiClient.h>
+#include<ESP8266WebServer.h>
+#include <ESP8266mDNS.h>
+#include "index.h"
+
+const char* ssid="xxxxx";
+const char* password ="xxxx";
+//char b,char1,char2;
+ESP8266WebServer server(80);
+
+//String page = "";
+int LEDPin = 13;
+int R1=D0;
+int R2=D1;
+int R3=D2;
+int R4=D3;
+int R5=D4;
+int R6=D5;
+int R7=D6;
+int R8=D7;
+static char relay_pins[] = {R1,R2,R3,R4,R5,R6,R7,R8};
+
+void web_page(){
+   
+   server.on("/R1ON", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R1, LOW);
+    delay(500);
+  });
+  server.on("/R1OFF", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R1, HIGH);
+    delay(500); 
+  });
+  server.on("/R2ON", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R2, LOW);
+    delay(500);
+  });
+  server.on("/R2OFF", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R2, HIGH);
+    delay(500); 
+  });
+  server.on("/R3ON", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R3, LOW);
+    delay(500);
+  });
+  server.on("/R3OFF", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R3, HIGH);
+    delay(500); 
+  });
+  server.on("/R4ON", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R4, LOW);
+    delay(500);
+  });
+  server.on("/R4OFF", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R4, HIGH);
+    delay(500); 
+  });
+  server.on("/R5ON", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R5, LOW);
+    delay(500);
+  });
+  server.on("/R5OFF", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R5, HIGH);
+    delay(500); 
+  });
+  server.on("/R6ON", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R6, LOW);
+    delay(500);
+  });
+  server.on("/R6OFF", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R6, HIGH);
+    delay(500); 
+  });
+  server.on("/R7ON", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R7, LOW);
+    delay(500);
+  });
+  server.on("/R7OFF", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R7, HIGH);
+    delay(500); 
+  });
+  server.on("/R8ON", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R8, LOW);
+    delay(500);
+  });
+  server.on("/R8OFF", [](){
+    server.send(200, "text/html", page);
+    digitalWrite(R8, HIGH);
+    delay(500); 
+  });
+  server.on("/RON",[](){
+    server.send(200,"text/html", page);
+    for (int a=1; a <=8; a++){
+  digitalWrite(relay_pins[a], LOW);
+  }
+  delay(1000);
+  });
+  server.on("/ROFF",[](){
+    server.send(200,"text/html", page);
+    for (int a=1; a <=8; a++){
+  digitalWrite(relay_pins[a], HIGH);
+  }
+  delay(1000);
+  });
+}
+void setup(void){
+
+for (int i=1; i <=8; i++){
+  pinMode(relay_pins[i], OUTPUT);
+  digitalWrite(relay_pins[i], HIGH);
+}
+  delay(1000);
+  Serial.begin(115200);
+  WiFi.begin(ssid, password); //begin WiFi connection
+  Serial.println("");
+ 
+  // Wait for connection
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.print("Connected to ");
+  Serial.println(ssid);
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
+
+  MDNS.begin("Esp8266");
+   
+  server.on("/", [](){
+    server.send(200, "text/html", page);
+  });
+web_page();
+  server.begin();
+  Serial.println("Web server started!");
+}
+ 
+void loop(void){
+  server.handleClient();
+}
