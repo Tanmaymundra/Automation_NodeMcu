@@ -21,8 +21,8 @@ int R6=D5;
 int R7=D6;
 int R8=D7;
 
-bool b1,b2,b3,b4,b5,b6,b7,b8= false;
-
+bool b1,b2,b3,b4,b5,b6,b7,b8;
+b1=b2=b3=b4=b5=b6=b7=b8=false;
 static char relay_pins[] = {R1,R2,R3,R4,R5,R6,R7,R8};
 
 void web_page(){
@@ -128,7 +128,7 @@ void web_page(){
     for (int a=1; a <=8; a++){
   digitalWrite(relay_pins[a], LOW);
   }
-  b1,b2,b3,b4,b5,b6,b7,b8=true;
+  b1=b2=b3=b4=b5=b6=b7=b8=true;
   delay(1000);
   });
   server.on("/ROFF",[](){
@@ -136,7 +136,7 @@ void web_page(){
     for (int a=1; a <=8; a++){
   digitalWrite(relay_pins[a], HIGH);
   }
-  b1,b2,b3,b4,b5,b6,b7,b8= false;
+  b1=b2=b3=b4=b5=b6=b7=b8=false;
   delay(1000);
   });
 }
